@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Income Summary{% endblock title %}
+
+{% block content %}
+    <h2>💰 Income</h2>
+
+    <p><strong>Total Income:</strong> {{ total_income }} ₽</p>
+
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for income in user.incomes.all %}
+                <tr>
+                    <td>{{ income.created_at|date:"d.m.Y H:i" }}</td>
+                    <td>{{ income.amount }} $</td>
+                    <td>{{ income.category.name }}</td>
+                    <td>{{ income.description|default:"—" }}</td>
+                    <td>
+                        <a href="{% url 'income_edit' income.id %}">Edit</a> |
+                        <a href="{% url 'income_delete' income.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No income records found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="{% url 'income_create' %}">➕ Add Income</a> |
+    <a href="{% url 'home' %}">🏠 Home</a>
+{% endblock content %}

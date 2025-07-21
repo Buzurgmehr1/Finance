@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Deleting category{% endblock title %}
+
+{% block content %}
+    <h2>🗑 Delete Category</h2>
+    <p>Are you sure about deleting category <strong>{{ category.name }}</strong>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">✅ Yes, delete</button>
+        <a href="{% url 'home' %}">❌ No</a>
+    </form>
+{% endblock content %}

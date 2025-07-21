@@ -3,18 +3,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Task Manager{% endblock %}</title>
+    <title>{% block title %}Finance Tracker{% endblock %}</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 30px;
         }
         nav a {
-            margin-right: 10px;
+            margin-right: 15px;
             text-decoration: none;
+            font-weight: bold;
+            color: #2c3e50;
         }
-        nav div{
+        nav div {
             text-align: right;
+        }
+        .container {
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -22,19 +27,26 @@
 <header>
     <nav>
         {% if request.session.user_id %}
-            <a href="{% url 'home' %}">Home</a>
-            <a href="{% url 'category' %}">Create Category</a>
-            <a href="{% url 'logout' %}">Logout</a>
-
+            <a href="{% url 'home' %}">🏠 Home</a>
+            <a href="{% url 'category_create' %}">📂 Add Category</a>
+            <a href="{% url 'income_create' %}">➕ Income</a>
+            <a href="{% url 'expense_create' %}">➖ Expense</a>
+            <a href="{% url 'summary' %}">📊 Summary</a>
+            <a href="{% url 'summary_income' %}">💰 Incomes</a>
+            <a href="{% url 'summary_expense' %}">💸 Expenses</a>
+            <a href="{% url 'logout' %}">🚪 Logout</a>
         {% else %}
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'register' %}">Register</a>
+            <a href="{% url 'login' %}">🔐 Login</a>
+            <a href="{% url 'register' %}">📝 Register</a>
         {% endif %}
     </nav>
-
     <hr>
 </header>
-    {% block content %}{% endblock %}
+
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
 
 </body>
 </html>

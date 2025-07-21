@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Editing category{% endblock title %}
+
+{% block content %}
+    <h2>✏️ Edit category</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Category name:</label><br>
+        <input type="text" name="name" id="name" value="{{ category.name }}" required><br><br>
+
+        <input type="submit" value="Save changes">
+    </form>
+{% endblock content %}

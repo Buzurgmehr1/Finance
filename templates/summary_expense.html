@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Expense Summary{% endblock title %}
+
+{% block content %}
+    <h2>💸 Expenses</h2>
+
+    <p><strong>Total Expenses:</strong> {{ total_expense }} ₽</p>
+
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in user.expenses.all %}
+                <tr>
+                    <td>{{ expense.created_at|date:"d.m.Y H:i" }}</td>
+                    <td>{{ expense.amount }} $</td>
+                    <td>{{ expense.category.name }}</td>
+                    <td>{{ expense.description|default:"—" }}</td>
+                    <td>
+                        <a href="{% url 'expense_edit' expense.id %}">Edit</a> |
+                        <a href="{% url 'expense_delete' expense.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No expenses found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="{% url 'expense_create' %}">➖ Add Expense</a> |
+    <a href="{% url 'home' %}">🏠 Home</a>
+{% endblock content %}

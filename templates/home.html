@@ -2,9 +2,13 @@
 
 {% block title %}Home{% endblock title %}
 
-
-
 {% block content %}
-    <h1>This is home page</h1>
+    <h1>Welcome!</h1>
+    <p>You are logged in as <strong>{{ user.username }}</strong></p>
 
+    <ul>
+        <li><a href="{% url 'income_create' %}">➕ Add Income</a></li>
+        <li><a href="{% url 'expense_create' %}">➖ Add Expense</a></li>
+        <li><a href="{% url 'summary' %}">📊 View Summary</a></li>
+    </ul>
 {% endblock content %}

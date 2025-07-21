@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Financial Summary{% endblock title %}
+
+{% block content %}
+    <h2>📊 Financial Summary</h2>
+
+    <p><strong>Total Income:</strong> {{ total_income }} $</p>
+    <p><strong>Total Expense:</strong> {{ total_expense }} $</p>
+    <p><strong>Balance:</strong> {{ balance }} $</p>
+
+    <hr>
+
+    <a href="{% url 'income_create' %}">➕ Add Income</a> |
+    <a href="{% url 'expense_create' %}">➖ Add Expense</a> |
+    <a href="{% url 'home' %}">🏠 Home</a>
+{% endblock content %}

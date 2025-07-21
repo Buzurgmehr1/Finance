@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Income{% endblock title %}
+
+{% block content %}
+    <h2>🗑️ Delete Income</h2>
+    <p>Are you sure you want to delete the income of <strong>{{ income.amount }}</strong> in the category <strong>{{ income.category.name }}</strong>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, delete</button>
+        <a href="{% url 'home' %}">Cancel</a>
+    </form>
+{% endblock content %}
